@@ -41,7 +41,7 @@ get '/stories/:name', to: redirect('/articles/%{name}')
 
 ```
 redirect is a helper 
-using blocks
+using blocks-->
 ```
 get '/stories/:name', to: redirect { |path_params, req| "/articles/#{path_params[:name].pluralize}" }
 
@@ -65,10 +65,19 @@ Rails.application.routes.draw do
   put 'book/update', to: "books#update"
   delete 'books/:id', to: "books#destroy"
 end
-
-
 ```
 
 REST vs CRUD
 <br>
 REST is an architectureal system to deal with data through HTTP protocols. Typically software applications create RESTful apis to handle CRUD operations.
+
+When we open console and if we make any changes to the database then those changes are permanent. However sometimes we want to test something and we want all those changes to rollback when we exist console. This is very often used in debugging in production environment.
+```
+$ bundle exec rails console -e production --sandbox
+Loading production environment in sandbox
+Any modifications you make will be rolled back on exit
+>> Task.update_all(name: "new name")
+>> exit
+
+```
+
