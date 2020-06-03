@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<H1 class="text-success">List of tasks will appear here</H1>
+<H1 class="text-success container">List of tasks will appear here</H1>
 
 <%# <table>
   <thead>
@@ -15,7 +15,9 @@
   </tbody>
 </table> %>
 <%= react_component 'tasks/List' %>
-
+<div class="container">
+  <%= link_to 'Back', tasks_path %>
+</div>
 <br>
 
-<%= link_to 'Create New Task',"#" %>
+
