@@ -2,22 +2,10 @@
 
 <H1 class="text-success container">List of tasks will appear here</H1>
 
-<%# <table>
-  <thead>
-    <tr>
-      <th>Desc</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    
-  </tbody>
-</table> %>
 <%= react_component 'tasks/List', { tasks: @tasks } %>
 <div class="container">
   <%= link_to 'Back', tasks_path %>
 </div>
-<br>
+
 
 

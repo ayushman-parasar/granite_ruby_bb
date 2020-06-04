@@ -130,3 +130,11 @@ So overall task_params will give us a hash like this
   task: { desc:"This is description text submitted in the form" }
 }
 ```
+
+*** rescue is an error catcher ***
+For the below code
+```
+before_action :load_task, only: [:show]
+
+```
+load_task will run before show action 

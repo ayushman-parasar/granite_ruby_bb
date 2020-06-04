@@ -1,6 +1,9 @@
 <h1>Editing Task</h1>
 
-<%= render 'form', task: @task %>
+<%# <%= render 'form', task: @task %> 
+<div>
 
-<%= link_to 'Show', @task %> |
+    <%= react_component 'tasks/Edit', { task: @task } %>
+</div> 
+<%= link_to 'Show', "#" %> |
 <%= link_to 'Back', tasks_path %>
