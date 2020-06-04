@@ -14,8 +14,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save 
-      puts "inside task save "
-      render status: :ok, json: {notice: "Task was successfully created"}
+      render status: :ok, json: { notice: "Task was successfully created" }
     else
       puts "inside create action else part"
       error_message = @task.errors.full_messages

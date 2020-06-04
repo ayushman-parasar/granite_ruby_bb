@@ -7,6 +7,7 @@ class New extends Component {
     super(props);
     this.state = {
       description:'',
+      message:null
     }
   };
   handleChange =(e)=>{
@@ -19,8 +20,13 @@ class New extends Component {
     console.log("submit clicked")
     API.postNewTask({task : {desc:this.state.description}})
     .then(
-      ()=>{
-        window.location.href = Routes.task_path();
+      (response)=>{
+        this.setState({
+          message:response.notice
+        })
+        setTimeout(()=>{
+          window.location.href = Routes.task_path();
+        },1000)
       })
     .catch(err=>{
       console.log("error in submit function", err)
@@ -60,9 +66,14 @@ class New extends Component {
   render() {
     return (
       <div className="container">
-        <div className="col-md-10 mx-auto pt-2">
-          {this.displayAddTaskForm()}
-        </div>
+        {
+            this.state.message ?
+            <div className="alert alert-success">
+              {this.state.message}
+            </div>:<div className="col-md-10 mx-auto pt-2">
+              {this.displayAddTaskForm()}
+            </div>
+        }
       </div>
     );
   }
