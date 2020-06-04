@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :load_task, only: [:show]
+  
 
   # GET /tasks
   # GET /tasks.json
@@ -14,13 +15,17 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save 
-      render status: :ok, json: { notice: "Task was successfully created" }
+      render status: :ok, json: { notice: "Task was successfully created", id:@task.id }
     else
       puts "inside create action else part"
       error_message = @task.errors.full_messages
       puts error_message
       render status: :unprocessable_entity, json: {errors: error_message}
     end
+  end
+
+  def show
+    render
   end
 
   private
@@ -30,12 +35,15 @@ class TasksController < ApplicationController
       params.require(:task).permit(:desc)
     end
 
-  
+    def load_task
+      @task = Task.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => errors
+        render json:{errors: errors}
+    end
   
   # GET /tasks/1
   # GET /tasks/1.json
-  # def show
-  # end
+  
 
   # # GET /tasks/new
   # def new

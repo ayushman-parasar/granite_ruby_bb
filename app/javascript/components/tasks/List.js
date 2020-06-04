@@ -3,6 +3,7 @@ import * as Routes from "../../utils/Routes"
 
 const List = ({ tasks }) => {
   const displayTaskList = () => {
+    console.log('tasks', tasks)
     return (
       <div>
         <h1>Tasks List</h1>
@@ -13,8 +14,10 @@ const List = ({ tasks }) => {
                 return (
                   <li key={index}>
                     Task id : {task.id}
+                    <a href={Routes.task_path_show(task.id)}>Show Task</a>
                     <br />
-                    Task description: {task.description}
+                    Task description: {task.desc}
+                    
                   </li>
                 );
               })}

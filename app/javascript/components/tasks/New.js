@@ -26,7 +26,7 @@ class New extends Component {
           message: response.notice,
         });
         setTimeout(() => {
-          window.location.href = Routes.task_path();
+          window.location.href = Routes.task_path_show(response.id);
         }, 1000);
       })
       .catch((err) => {

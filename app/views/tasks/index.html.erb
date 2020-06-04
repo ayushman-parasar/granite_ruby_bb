@@ -14,7 +14,7 @@
     
   </tbody>
 </table> %>
-<%= react_component 'tasks/List' %>
+<%= react_component 'tasks/List', { tasks: @tasks } %>
 <div class="container">
   <%= link_to 'Back', tasks_path %>
 </div>

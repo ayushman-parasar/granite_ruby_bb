@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @task.desc %>
-</p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
+<div>
+  <%= react_component 'tasks/Show', { task: @task } %>
+</div>
+<%= link_to 'Edit', "#"%> 
 <%= link_to 'Back', tasks_path %>
