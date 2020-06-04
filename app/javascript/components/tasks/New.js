@@ -1,24 +1,50 @@
 
 import React, { Component } from 'react';
-
+import API from "./../../utils/API"
+import * as Routes from "./../../utils/Routes"
 class New extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      description:'',
+    }
   };
+  handleChange =(e)=>{
+    this.setState({
+      description:e.target.value
+    })
+  }
+  onSubmit=(e)=>{
+    e.preventDefault();
+    console.log("submit clicked")
+    API.postNewTask({task : {desc:this.state.description}})
+    .then(
+      ()=>{
+        window.location.href = Routes.task_path();
+      })
+    .catch(err=>{
+      console.log("error in submit function", err)
+      if(err.text){
+        err.text().then(err=>{
+          console.log(err)
+        })
+      }
+    })
 
+  }
   displayAddTaskForm=()=>{
     return (
       <div>
         <div className="row">
-          <h3 className="pb-3">Add Task</h3>
+          <h3 className="pb-3">Add Task Form</h3>
         </div>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <div className="form-group row pt-3">
             <label htmlFor="name" className="col-sm-2 col-form-label">
               <h5 className="text-secondary ">Description: </h5>
             </label>
             <div className="col-sm-10">
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" onChange={this.handleChange} value={this.state.description} />
             </div>
           </div>
           <div className="form-group row pt float-right pr-3">

@@ -81,3 +81,52 @@ Any modifications you make will be rolled back on exit
 
 ```
 
+<hr>
+
+## Using react 
+
+To generate react components use:
+```
+bundle exec rails g reaact_component tasks/List
+```
+It creates a folder tasks and inside of which a file/component is created called List.This happens inside app/javascript/components only when you have assembled react within rails. The whole render  operation is done via a helper method called react_component to render React components inside views.
+
+  *** https://learnrubyonrails.bigbinary.com/docs/bringing-reactjs-to-ruby-on-rails.md ***
+<hr>
+
+### Creating Task
+In task controller
+```
+def create
+    @task = Task.new(task_params)
+    if @task.save
+      render status: :ok, json: { notice: 'Task was successfully created' }
+    else
+      errors = @task.errors.full_messages
+      render status: :unprocessable_entity, json: { errors: errors  }
+    end
+  end
+
+
+```
+When a form is submitted then Rails makes all the form data available to the controller in a variable called params. It's a hash.
+
+```
+
+  private
+
+  def task_params
+    params.require(:task).permit(:description)
+  end
+```
+
+The permit method returns a new ActionController::Parameters instance that includes only the given filters and sets the permitted attribute for the object to true. This is useful for limiting which attributes should be allowed for mass updating.The private keyword here tells rails that methods defined from now onwards can be accessible within the object i.e can be accessed by the methods inside that particular class 
+
+<br>
+
+So overall task_params will give us a hash like this
+```
+{
+  task: { desc:"This is description text submitted in the form" }
+}
+```
