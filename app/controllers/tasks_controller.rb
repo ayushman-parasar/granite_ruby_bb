@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :load_task, only: [:show, :edit]
+  before_action :load_task, only: [:show, :edit, :update, :destroy]
   
 
   # GET /tasks
@@ -11,6 +11,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
   end 
+
   # create Task
   def create
     @task = Task.new(task_params)
@@ -32,6 +33,24 @@ class TasksController < ApplicationController
     render
   end
 
+  def update
+    puts @task,task_params, "inside update"
+    if @task.update(task_params)
+      render status: :ok, json:{ notice: "Successfully updated task "}
+    else
+      render status: :unprocessable_entity, json:{ errors: @task.errors.full_messages }
+    end 
+  end
+
+  def destroy
+    puts @task.inspect, "hello world this is destroy"
+    if @task.destroy
+      render status: :ok, json:{ notice: "Successfully destroyed task"}
+    else
+      render status: :unprocessable_entity, json:{ errors: @task.errors.full_messages }    
+    end
+  end
+
   private
     
     def task_params
@@ -40,7 +59,9 @@ class TasksController < ApplicationController
     end
 
     def load_task 
+      # puts task_params, "xxx"
       @task = Task.find(params[:id])
+      # puts @task.inspect,"yyy"
       rescue ActiveRecord::RecordNotFound => errors
         render json:{errors: errors}
     end

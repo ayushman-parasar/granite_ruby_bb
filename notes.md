@@ -138,3 +138,41 @@ before_action :load_task, only: [:show]
 
 ```
 load_task will run before show action 
+
+example-
+```
+before_action :load_task, only: [:show, :edit, :update, :destroy]
+  def destroy
+    puts @task.inspect, "hello world this is destroy"
+    if @task.destroy
+      render status: :ok, json:{ notice: "Successfully destroyed task"}
+    else
+      render status: :unprocessable_entity, json:{ errors: @task.errors.full_messages }    
+    end
+  end
+
+  private
+    
+    def task_params
+      puts params, "params lol"
+      params.require(:task).permit(:desc)
+    end
+
+    def load_task 
+      # puts task_params, "xxx"
+      @task = Task.find(params[:id])
+      # puts @task.inspect,"yyy"
+      rescue ActiveRecord::RecordNotFound => errors
+        render json:{errors: errors}
+    end
+```
+In the above code , before performing the destroy  operation  the load task is run 
+where we obtain @task which is an instance variable and the puts statement gives the blow result <br>
+#<Task id: 21, name: nil, desc: "sdsadsadsadsadas", created_at: "2020-06-05 07:41:37", updated_at: "2020-06-05 07:41:37">
+<br>
+Now we try to destroy @task by the use of destroy method as in @task.destroy which returns true or false,
+if true we return response with a status code of 200 and the json body as we did in node <br>
+res.status(200).json({ success: true });<br>
+if false we return the necessary status code
+
+The rescue catches the exception that *** Task.find(params[:id]) *** may not find any Task with that particular id.

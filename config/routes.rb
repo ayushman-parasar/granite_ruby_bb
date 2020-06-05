@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # roots to welcome action of home controller
 
 
-  resources :tasks, only:[:index, :new, :create, :show, :edit]
+  resources :tasks
 
 
 

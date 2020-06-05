@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 function Errors({ errors, message }) {
   return (
     <React.Fragment>
       <div className={`alert alert-${message}`}>
-        {errors.map((error, index)=> (
+        {errors.map((error, index) => (
           <li key={index}>{error}</li>
         ))}
       </div>
