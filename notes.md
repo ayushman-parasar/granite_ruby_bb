@@ -176,3 +176,25 @@ res.status(200).json({ success: true });<br>
 if false we return the necessary status code
 
 The rescue catches the exception that *** Task.find(params[:id]) *** may not find any Task with that particular id.
+
+
+### Details on Foreign Key
+
+when we do 
+```
+rails g migration add_foreign_key_to_task
+```
+we get a migration which seems like this
+```
+class AddForeignKeyToTask < ActiveRecord::Migration[6,0]
+  def change
+    add_foreign_key :tasks, :users, {column: :user_id, onDelete: :cascade}
+  end
+end
+```
+The format for the add_foreign_key is 
+```
+add_foreign_key  TABLE_NAME_WHERE_YOU_WANT_TO_INSERT_Fkey, TABLE_NAME_CONTAINING_THE_REFERENCED_Pkey,OPTIONS={}
+```
+The foreign key would be inserted into tasks ,and this is the primary key in the users table.In options we mention the column where you want to insert the foreign key
+<br>

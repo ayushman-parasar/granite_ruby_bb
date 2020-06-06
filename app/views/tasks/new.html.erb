@@ -4,7 +4,7 @@
 
 <%# <%= render 'form', task: @task %> 
 <div>
-    <%= react_component 'tasks/New' %>
+    <%= react_component 'tasks/New' , {users:User.all}%>
 </div>
 
 <%= link_to 'Back', tasks_path %>

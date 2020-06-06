@@ -55,7 +55,8 @@ class TasksController < ApplicationController
     
     def task_params
       puts params, "params lol"
-      params.require(:task).permit(:desc)
+      params.require(:task).permit(:desc,:user_id)
+      # puts params, 'params after require and permit'
     end
 
     def load_task 
