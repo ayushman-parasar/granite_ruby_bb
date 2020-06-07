@@ -21,3 +21,7 @@ export function update_task_path(id){
 export function delete_task_path(id){
   return `/tasks/${id}`
 }
+
+export function users_path(){
+  return "/users";
+}

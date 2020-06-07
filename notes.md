@@ -33,7 +33,8 @@ This will create logout_path and logout_url as named route helpers in your appli
 ```
 get 'photos/*other', to: 'photos#unknown'
 ```
-This route would match photos/12 or /photos/long/path/to/12, setting params[:other] to "12" or "long/path/to/12". The fragments prefixed with a star are called "wildcard segments".
+This route would match photos/12 or /photos/long/path/to/12, setting params[:other] to "12" or "long/path/to/12". The fragments prefixed with a star are called "wildcard segments".<br>
+<i>The params object is a container that enables you to pass values between method calls. For example, when you're on the page called by the list method, you can click a link for a specific book, and it passes the id of that book via the params object so that show can find the specific book.<i>
 
 - Redirect
 ```
@@ -109,7 +110,7 @@ def create
 
 
 ```
-When a form is submitted then Rails makes all the form data available to the controller in a variable called params. It's a hash.
+When a form is submitted then Rails makes all the form data available to the controller in an object called params.The first line creates a new instance variable called @task that holds a Task object built from the data, the user submitted. The task_params method is used to collect all the fields from object :tasks. The data was passed from the new method to create using the params object.
 
 ```
 
@@ -120,7 +121,7 @@ When a form is submitted then Rails makes all the form data available to the con
   end
 ```
 
-The permit method returns a new ActionController::Parameters instance that includes only the given filters and sets the permitted attribute for the object to true. This is useful for limiting which attributes should be allowed for mass updating.The private keyword here tells rails that methods defined from now onwards can be accessible within the object i.e can be accessed by the methods inside that particular class 
+The permit method returns a new ActionController::Parameters instance that includes only the given filters and sets the permitted attribute for the object to true. This is useful for limiting which attributes should be allowed for mass updating.The private keyword here tells rails that methods defined from now onwards can be accessible within the object i.e can be accessed by the methods inside that particular class .
 
 <br>
 
@@ -198,3 +199,30 @@ add_foreign_key  TABLE_NAME_WHERE_YOU_WANT_TO_INSERT_Fkey, TABLE_NAME_CONTAINING
 ```
 The foreign key would be inserted into tasks ,and this is the primary key in the users table.In options we mention the column where you want to insert the foreign key
 <br>
+
+
+### has_secure_password function
+
+To explain in English, this function does the following:
+
+- Loads the bcrypt-ruby Gem and requires bcrypt. bcrypt is a secure hashing function that you can learn more about in Wikipedia.
+- Adds a read-only attribute to the model called password.
+- Validates that the password is confirmed by another field, called password_confirmation. In other words, you have to enter the password twice to confirm it.
+- Ensures that password_digest is present before a model is saved.
+- Load the instance methods, which in this case are authenticate (which returns true if the password is correct, otherwise false) and password=, which encrypts the passed password into the password_digest attribute.
+
+<br> 
+A password_digest is a  string that has three components:
+
+A flag that indicates that the string is a Bcrypt hash
+The (unhashed) salt
+The result of hashing password+salt
+
+### insight on the actions of the controller
+
+```
+def new
+  @user = User.new
+end
+```
+The above method is called when you display a page to get the input from the user. The new method tells Rails that you will create a new object/instance of the User 
