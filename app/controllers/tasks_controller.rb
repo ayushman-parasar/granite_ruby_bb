@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
   before_action :load_task, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_user_logged_in
+
   
 
   # GET /tasks
@@ -14,7 +16,9 @@ class TasksController < ApplicationController
 
   # create Task
   def create
+   
     @task = Task.new(task_params)
+    @task.creator_id = @current_user.id
     if @task.save 
       render status: :ok, json: { notice: "Task was successfully created", id:@task.id }
     else
@@ -54,8 +58,8 @@ class TasksController < ApplicationController
   private
     
     def task_params
-      puts params, "params lol"
-      params.require(:task).permit(:desc,:user_id)
+      puts params, "inside params"
+      params.require(:task).permit(:desc,:user_id, :creator_id)
       # puts params, 'params after require and permit'
     end
 

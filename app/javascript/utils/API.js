@@ -72,8 +72,12 @@ export const fetchApi = ({
   if (methods.includes(method)) {
     options['body'] = JSON.stringify(body);
   }
-  console.log({"log":url, "options":options})
+  console.log({"url":url, "options":options})
   fetch(url, options)
+    .then(res =>{
+      console.log(res,'responses from create action')
+      return res
+    })
     .then(response =>
       response.json().then(data => {
         console.log("inside fetch api", response,"::::::",data)
@@ -87,7 +91,7 @@ export const fetchApi = ({
           response.status >= STATUS_OK &&
           response.status < STATUS_BAD_REQUEST
         ) {
-          console.log(response,"success")
+          console.log(response," inside success")
           onSuccess({ messages: [data.notice], type: 'success' });
           successCallBack(data);
         } else if (response.status == STATUS_NOT_FOUND) {
@@ -99,7 +103,7 @@ export const fetchApi = ({
       })
     )
     .catch(error => {
-      console.error(error,"error in fetchApi");
+      console.log(error,"error in fetchApi");
     });
 };
 

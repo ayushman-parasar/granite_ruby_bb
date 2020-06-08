@@ -25,3 +25,16 @@ export function delete_task_path(id){
 export function users_path(){
   return "/users";
 }
+
+
+export function login_path(){
+  return "/session";
+}
+
+export function login_new_path(){
+  return "/session/new"
+}
+
+export function logout_path(){
+  return "/logout";
+}

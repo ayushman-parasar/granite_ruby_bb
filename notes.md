@@ -138,7 +138,7 @@ For the below code
 before_action :load_task, only: [:show]
 
 ```
-load_task will run before show action 
+load_task will run before show action . Here before_action is a Filter provided by the Rails.Filters can be used before, around , after actions in the controller.
 
 example-
 ```
