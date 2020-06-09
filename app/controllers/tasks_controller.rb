@@ -55,15 +55,19 @@ class TasksController < ApplicationController
     authorize @task
 
     if @task.update_attributes(task_params)
-      redirect_to @task
+      # redirect_to @task
+      render status: :ok, json:{notice: "updated successfully"}
     end
   end
 
   def destroy
     @task = Task.find(params[:id])
     authorize @task
-    @task.destroy
-    redirect_to tasks_url
+    # @task.destroy
+    # redirect_to tasks_url
+    if @task.destroy
+      render status: :ok, json:{notice:"Deleted successfully"}
+    end
   end
 
 
