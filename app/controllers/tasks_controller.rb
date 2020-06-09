@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    puts tasks_path , 'tasks_path named routes'
+    puts tasks_path , 'tasks_path named routes.'
     @tasks = Task.all
     # @tasks = TaskPolicy::Scope.new(@current_user, Task).resolve
     #same as 
