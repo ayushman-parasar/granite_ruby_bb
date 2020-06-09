@@ -1,10 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Newest Indivitual Task</h1>
+<%# <h1>Newest Indivitual Task</h1> %>
 
 <%# <%= render 'form', task: @task %> 
 <div>
     <%= react_component 'tasks/New' , {users:User.all}%>
 </div>
+<div class="container">
+  <div class="col-md-10 mx-auto pt-2 ">
+    <%= link_to 'Back', tasks_path %>
+  </div>
+</div>
 
-<%= link_to 'Back', tasks_path %>

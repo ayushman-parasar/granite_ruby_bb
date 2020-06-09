@@ -9,16 +9,23 @@ class Navbarin extends React.Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-dark bg-primary">
+        <nav className="navbar navbar-dark bg-primary ">
           <a
             className="navbar-brand">
             Granite
           </a>
+          <div className="group">
           <a
             className="navbar-brand"
             href={Routes.login_new_path()}>
             Login
           </a>
+          <a
+            className="navbar-brand"
+            href={Routes.users_new_path()}>
+            Sign up
+          </a>
+          </div>
         </nav>
       </div >
     );

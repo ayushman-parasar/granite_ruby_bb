@@ -16,12 +16,11 @@ class SessionController < ApplicationController
 
   def destroy
     # puts session.inspect, "inspecting session"
-    session.delete(:user_id)
-    # if session.delete(:user_id)
-    #   render status: :ok, json:{ notice:"Successfuly logged out"}
-    # else
-    #   render status: :unprocessable_entity, json:{errors:["Logout cant be performed"]}
-  
-    # end
+    # session.delete(:user_id)
+    if session.delete(:user_id)
+      render status: :ok, json:{ notice:"Successfuly logged out"}
+    else
+      render status: :unprocessable_entity, json:{errors:["Logout cant be performed"]}
+    end
   end
 end

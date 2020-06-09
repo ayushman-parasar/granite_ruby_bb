@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   helper_method :logged_in?, :current_user
 
   private
@@ -21,5 +25,10 @@ class ApplicationController < ActionController::Base
       if session[:user_id]
         @current_user ||= User.find(session[:user_id])
       end
+    end
+
+    def user_not_authorized
+      flash[:warning] = "All accesssable tasks are listed below."
+      redirect_to root_path
     end
 end

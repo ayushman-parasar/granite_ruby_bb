@@ -25,7 +25,9 @@ export function delete_task_path(id){
 export function users_path(){
   return "/users";
 }
-
+export function users_new_path(){
+  return "/users/new"
+}
 
 export function login_path(){
   return "/session";

@@ -226,3 +226,30 @@ def new
 end
 ```
 The above method is called when you display a page to get the input from the user. The new method tells Rails that you will create a new object/instance of the User 
+
+## Authorization
+
+use pundit gem
+
+Pundit helps in creating role based authorization with the help of policies. Policies are classes
+that contain authorization for an action.
+We included it in the application controller where we have current user method defined.
+```
+ def initialize(user, task)
+    @user = user
+    @task = task
+  end
+```
+Pundit will call the current_user method to send the result into the ```user``` argument
+the second argument is the model object whose authorization you want to check, in this case its task model.
+
+```
+def show?
+  task.creator_id == user.id || task.user_id == user.id
+end
+```
+It is a query method mapped to the show action of the task controller.
+
+
+
+Pundit scopes usually used to fetch a list of records which user have access to.

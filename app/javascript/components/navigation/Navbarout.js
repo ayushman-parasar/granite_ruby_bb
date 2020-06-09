@@ -21,7 +21,7 @@ class Navbarout extends React.Component {
           console.log(response,'success');
         },
         successCallBack: () => {
-          window.location.replace(Routes.login_path());
+          window.location.replace(Routes.login_new_path());
         }
       });
     }
