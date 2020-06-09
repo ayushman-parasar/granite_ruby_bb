@@ -64,11 +64,11 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     authorize @task
-    # @task.destroy
-    # redirect_to tasks_path
-    if @task.destroy
-      render status: :ok, json:{notice:"Deleted successfully"}
-    end
+    @task.destroy
+    redirect_to tasks_path
+    # if @task.destroy
+    #   render status: :ok, json:{notice:"Deleted successfully"}
+    # end
   end
 
 
