@@ -7,6 +7,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    puts tasks_path , 'tasks_path named routes'
     @tasks = Task.all
     # @tasks = TaskPolicy::Scope.new(@current_user, Task).resolve
     #same as 
@@ -65,7 +66,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     authorize @task
     # @task.destroy
-    # redirect_to tasks_path
+    # redirect_to tasks_path  
     if @task.destroy
       render status: :ok, json:{notice:"Deleted successfully"}
     end
