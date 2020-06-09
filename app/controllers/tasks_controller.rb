@@ -43,6 +43,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     authorize @task
+    @comments = @task.comments
   end
 
   def edit

@@ -3,6 +3,7 @@ import React from "react";
 import * as Routes from "./../../utils/Routes";
 import { fetchApi } from "../../utils/API";
 import Errors from "../shared/Errors";
+import Form from "../tasks/comment/Form"
 
 class Show extends React.Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class Show extends React.Component {
   }
 
   render() {
-    const { task } = this.props;
+    const { task, comments } = this.props;
     return (
       <>
         <div className="container">
@@ -72,8 +73,22 @@ class Show extends React.Component {
                 Delete
               </a>
             </div>
+            <div className="mt-4 pt-4 border-top">
+            <h3 className="mb-3">Comments</h3>
+            {comments.map(comment => {
+              return (
+                <div className="pl-2">
+                  <p className="font-weight-bold">{comment.content}</p>
+                </div>
+              );
+            })}
+            <Form  task={task} />
+          </div>
           </div>
         </div>
+        {/* <div className="row"> */}
+          
+        {/* </div> */}
       </>
     );
   }

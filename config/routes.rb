@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # roots to welcome action of home controller
 
 
-  resources :tasks
+  resources :tasks do
+    resources :comments, only: [:create]
+  end
   resources :users, only: [:new, :create]
   resources :session, only: [:new, :create]
   delete '/logout' => 'session#destroy' 

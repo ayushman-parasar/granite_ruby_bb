@@ -1,6 +1,7 @@
 class Task < ApplicationRecord
   validates :desc, presence: true
   belongs_to :user, optional: :true
+  has_many :comments, dependent: :destroy
   # before_validation :set_description
   # after_validation :set_description
   

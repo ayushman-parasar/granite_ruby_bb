@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-  <%= react_component 'tasks/Show', { task: @task } %>
+  <%= react_component 'tasks/Show', { task: @task , comments: @comments} %>
 
 </div>
 <%# <%= link_to 'Edit', "/tasks/#{@task.id}/edit"%>  
