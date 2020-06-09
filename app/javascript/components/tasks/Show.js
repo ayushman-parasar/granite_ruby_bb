@@ -75,10 +75,10 @@ class Show extends React.Component {
             </div>
             <div className="mt-4 pt-4 border-top">
             <h3 className="mb-3">Comments</h3>
-            {comments.map(comment => {
+            {comments && comments.map((comment,index) => {
               return (
-                <div className="pl-2">
-                  <p className="font-weight-bold">{comment.content}</p>
+                <div key= {index} className="pl-2">
+                  <p  className="font-weight-bold">{comment.content}</p>
                 </div>
               );
             })}

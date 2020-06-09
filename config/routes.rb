@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
 
   resources :tasks do
+    resources :status, only: [:update]
     resources :comments, only: [:create]
   end
   resources :users, only: [:new, :create]

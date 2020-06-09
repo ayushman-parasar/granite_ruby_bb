@@ -65,7 +65,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     authorize @task
     # @task.destroy
-    # redirect_to tasks_url
+    # redirect_to tasks_path
     if @task.destroy
       render status: :ok, json:{notice:"Deleted successfully"}
     end

@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
 
     def user_not_authorized
       flash[:warning] = "All accesssable tasks are listed below."
-      redirect_to root_path
+      redirect_to tasks_path
     end
 end
