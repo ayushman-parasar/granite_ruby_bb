@@ -1,6 +1,7 @@
 import React from 'react';
 import * as Routes from "../../utils/Routes"
 import { fetchApi } from '../../utils/API';
+// import Routes from '../../js-routes.js.erb';
 
 class Navbarout extends React.Component {
   constructor(props) {

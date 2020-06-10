@@ -26,6 +26,8 @@ gem 'react-rails'
 
 gem "pundit"
 
+gem 'pg' , '1.2.3'
+
 gem 'bundler-audit', require: false
 gem 'ruby_audit', require: false
 
