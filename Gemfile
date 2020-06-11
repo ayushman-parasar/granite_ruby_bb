@@ -28,6 +28,8 @@ gem "pundit"
 
 gem 'pg' , '1.2.3'
 
+gem "sidekiq"
+
 gem 'bundler-audit', require: false
 gem 'ruby_audit', require: false
 
