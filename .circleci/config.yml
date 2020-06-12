@@ -76,6 +76,7 @@ jobs:
       # Generate assets
       - run: bin/webpack
       - run: bundle exec rails webpacker:compile
+      - run: redis-server
 
       # Unit tests
       - run:
