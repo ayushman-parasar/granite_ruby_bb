@@ -239,7 +239,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   jbuilder (~> 2.7)
   listen (~> 3.2)
-  pg (= 1.2.3)
+  pg
   puma (~> 4.1)
   pundit
   rails (~> 6.0.3, >= 6.0.3.1)

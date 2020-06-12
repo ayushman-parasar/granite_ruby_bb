@@ -30,11 +30,11 @@ export function users_new_path(){
 }
 
 export function login_path(){
-  return "/session";
+  return "/sessions";
 }
 
 export function login_new_path(){
-  return "/session/new"
+  return "/sessions/new"
 }
 
 export function logout_path(){
