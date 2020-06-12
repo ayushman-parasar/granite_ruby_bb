@@ -5,6 +5,7 @@ jobs:
     docker:
        - image: circleci/ruby:2.6.3-node-browsers
        - image: circleci/postgres:12.2
+       - image: redis
          environment:
            POSTGRES_HOST_AUTH_METHOD: trust
     working_directory: ~/wheel
@@ -76,7 +77,6 @@ jobs:
       # Generate assets
       - run: bin/webpack
       - run: bundle exec rails webpacker:compile
-      - run: redis-server
 
       # Unit tests
       - run:
