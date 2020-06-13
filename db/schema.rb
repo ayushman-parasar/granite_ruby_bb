@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_075851) do
+ActiveRecord::Schema.define(version: 2020_06_13_111906) do
 
   create_table "articles", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 2020_06_09_075851) do
     t.index ["task_id"], name: "index_comments_on_task_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
+
+# Could not dump table "posts" because of following StandardError
+#   Unknown type 'uuid' for column 'id'
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
