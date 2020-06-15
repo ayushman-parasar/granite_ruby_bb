@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
-  # def setup
-  #   Task.delete_all
-  # end
+  def setup
+    Task.destroy_all
+  end
 
   def test_is_instance_of_task
     # assert_difference Task.count
